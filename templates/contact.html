@@ -1,0 +1,36 @@
+<!-- Header -->
+<div class="view-header">
+      <h1>Contact</h1>
+      <a ng-click="goList()" class="btn_list btn_title" title="Go to Contact list"><i class="fa fa-list fa-2x"></i></a>
+</div>
+<!-- Form -->
+<form id="form_contact" name="form_contact" ng-cloak>
+      <div class="form-group">
+            <input type="text" name="first_name" value="" placeholder="First Name" maxlength="36" ng-model="contact.first_name" required>
+            <p ng-show="form_contact.first_name.$error.required && form_contact.first_name.$touched" class="error-block">The first name is required</p>
+      </div> 
+      <div class="form-group">
+            <input type="text" name="last_name" value="" placeholder="Last Name" maxlength="36" ng-model="contact.last_name" required>
+            <p ng-show="form_contact.last_name.$error.required && form_contact.last_name.$touched" class="error-block">The last name is required</p>
+      </div> 
+      <div class="form-group">
+            <input type="email" name="email" value="" placeholder="Email" ng-model="contact.email" required>
+            <p ng-show="form_contact.email.$error.required && form_contact.email.$touched" class="error-block">The Email is required</p>
+            <p ng-show="form_contact.email.$error.email && form_contact.email.$touched" class="error-block">You must enter a valid email</p>
+      </div> 
+      <div class="styled-select">
+            <select name="country" ng-model="contact.country">
+                  <option value="" disabled selected>Select the country</option>
+                  <option ng-repeat="code in countries.getCodes()" value="{{code}}">{{countries.getName(code)}}</option>
+            </select>
+      </div>
+      <!--p ng-show="form_contact.country.$error.required && form_contact.country.$touched" class="error-block">The country is required</p-->
+
+<!-- button bar -->
+<div class="button-bar">
+      <button name="btn_add" ng-click="add()" ng-show="new && form_contact.$valid" title="Save new Contact">Add <i class="fa fa-floppy-o"></i></button>
+      <button name="btn_edit" ng-click="update()" ng-show="!new && form_contact.$valid" title="Edit Contact">Edit <i class="fa fa-pencil"></i></button>
+      <button name="btn_delete" ng-click="delete()" ng-show="!new" title="Delete Contact">Delete <i class="fa fa-trash"></i></button>
+</div>
+
+</form>
